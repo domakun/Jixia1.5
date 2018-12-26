@@ -4,13 +4,13 @@
       <div class="title">{{item.title}}</div>
       <div  class="main_content">
         <div class="user">
-          <div class="headSculpture"></div>
-          <div class="user_info"><span>{{item.username}}</span><span>{{item.lv}}</span></div>
+          <div class="headSculpture" v-bind:style="{backgroundImage:'url(' + item.headSculpture + ')'}"></div>
+          <div class="user_info"><span style="color: #ff6f61">{{item.username}}</span><span style="color: #e6a23c">LV{{item.lv}}</span></div>
           <div>
           </div>
         </div>
         <div class="main_text">
-          <div class="info_pic"></div>
+          <div class="info_pic" v-bind:style="{backgroundImage:'url(' + item.info_pic + ')'}"></div>
           <div class="text_asy">{{item.content}}</div>
         </div>
 
