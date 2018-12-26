@@ -12,7 +12,7 @@ import Scenic from '@/components/scenic/Scenic'
 import Me from '@/components/me/Me'
 import Strategy from '@/components/strategy/Strategy'
 import About from '@/components/home/About'
-
+import Community from '@/components/home/Community'
 Vue.use(Router);
 
 export default new Router({
@@ -82,6 +82,12 @@ export default new Router({
       path:'/About',
       name:'About',
       component: About
+    },
+    {
+      //社区--路由
+      path:'/Community',
+      name:'Community',
+      component: Community
     },
   ]
 })

@@ -12,7 +12,7 @@
               <router-link to="/scenic">景区</router-link>
             </li>
             <li class="menu-community">
-              <router-link to="">社区</router-link>
+              <router-link to="/Community">社区</router-link>
             </li>
             <li class="menu-about">
               <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">-->
@@ -185,6 +185,7 @@
     color: #fff;
     z-index: 1;
     text-decoration: none;
+    letter-spacing: 3px;
   }
   .nav-menu li:hover a {
     color: #ff6f61;
