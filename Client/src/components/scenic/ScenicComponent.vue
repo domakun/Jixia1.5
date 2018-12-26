@@ -73,5 +73,6 @@
     height: 120px;
     background-color: pink;
     background-size: 100%;
+    background-image: url("https://images.pexels.com/photos/1123484/pexels-photo-1123484.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
   }
 </style>

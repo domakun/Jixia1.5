@@ -51,13 +51,13 @@ app.get('/*',function(req,res){
         GlController.searchGl(req,res)
     }else if( pathname == '/getAllUser'){
         userController.showUsers(req,res);
-    }
-    else if( pathname == '/deleteUser'){
+    }else if( pathname == '/deleteUser'){
         userController.deleteUser(req,res);
-    }
-    else if(pathname == '/searchUser'){
+    }else if(pathname == '/searchUser'){
         console.log('=======>请求searchUser');
         userController.searchUser(req,res)
+    }else if(pathname == '/getAllGl'){
+        GlController.showGl(req,res)
     }
 });
 
