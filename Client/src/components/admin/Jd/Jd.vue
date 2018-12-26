@@ -20,6 +20,7 @@
   </div>
 </template>
 <script>
+  import {domain} from '../../../util/domain'
   import SelectAll from './SelectAll'
   import AddJd from './AddJd'
   import  SelectJd from './SelectJd'
@@ -39,7 +40,7 @@
     },
     methods:{
       get:function () {
-        this.$axios.get("http://192.168.2.110:9999/getAllJd?pageNow="+this.pageNow, {}).then(response => {
+        this.$axios.get(domain+"/getAllJd?pageNow="+this.pageNow, {}).then(response => {
           console.log("get发送Ajax请求成功", response.data);
           this.jdData = response.data.jdData;
           this.totalPage = response.data.totalPages;

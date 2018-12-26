@@ -106,13 +106,14 @@
 </template>
 
 <script>
+  import {domain} from '../../../util/domain'
   import { regionData,CodeToText ,TextToCode} from 'element-china-area-data'
     export default {
         name: "SelectJd",
       data:function () {
           return {
             area:[],
-            url:'http://192.168.2.110:9999',
+            url:domain,
             jdObj:{
               jd_addr:'',
               jd_name:'',
@@ -187,7 +188,7 @@
         showJd:function (jdObj) {
           console.log('oh...')
           var jd_id = jdObj.jd_id
-          this.$axios.get("http://192.168.2.110:9999/showJd?jd_id="+jd_id, {}).then(response => {
+          this.$axios.get(domain+"/showJd?jd_id="+jd_id, {}).then(response => {
             console.log("get发送Ajax请求成功", response.data);
           }).catch(response=> {
             console.log('false_2_send_msg')
@@ -202,7 +203,7 @@
             confirmButtonText: '确定',
             cancelButtonText: '取消'
           }).then(() => {
-            this.$axios.get("http://192.168.2.110:9999/deleteJd?jd_id="+jd_id, {}).then(response => {
+            this.$axios.get(domain+"/deleteJd?jd_id="+jd_id, {}).then(response => {
               console.log("get发送Ajax请求成功", response.data);
               if(response.data == 'success'){
                 this.$message({
@@ -264,5 +265,10 @@
 <style scoped>
   .panel {
     margin-top: 10px ;
+  }
+  .pageInation {
+    position: absolute;
+    bottom: 30px;
+    left: 350px ;
   }
 </style>

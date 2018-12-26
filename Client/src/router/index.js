@@ -11,7 +11,7 @@ import User from '@/components/admin/User/User'
 import Scenic from '@/components/scenic/Scenic'
 import Me from '@/components/me/Me'
 import Strategy from '@/components/strategy/Strategy'
-
+import About from '@/components/home/About'
 
 Vue.use(Router);
 
@@ -76,6 +76,12 @@ export default new Router({
       path:'/me',
       name:'Me',
       component: Me
+    },
+    {
+      //关于我们--路由
+      path:'/About',
+      name:'About',
+      component: About
     },
   ]
 })

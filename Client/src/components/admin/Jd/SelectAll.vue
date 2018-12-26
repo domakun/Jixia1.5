@@ -92,12 +92,13 @@
 </template>
 
 <script>
+  import {domain} from '../../../util/domain'
   import { regionData,CodeToText ,TextToCode} from 'element-china-area-data'
     export default {
         name: "SelectAll",
         data(){
           return {
-            url:'http://192.168.2.110:9999',
+            url:domain,
             jdData:[],
             pageNow:1,
             totalPages:1,
@@ -177,7 +178,7 @@
           showJd:function (jdObj) {
             console.log('oh...')
             var jd_id = jdObj.jd_id
-            this.$axios.get("http://192.168.2.110:9999/showJd?jd_id="+jd_id, {}).then(response => {
+            this.$axios.get(domain+"/showJd?jd_id="+jd_id, {}).then(response => {
               console.log("get发送Ajax请求成功", response.data);
             }).catch(response=> {
               console.log('false_2_send_msg')
@@ -192,7 +193,7 @@
               confirmButtonText: '确定',
               cancelButtonText: '取消'
             }).then(() => {
-              this.$axios.get("http://192.168.2.101:9999/deleteJd?jd_id="+jd_id, {}).then(response => {
+              this.$axios.get(domain+"/deleteJd?jd_id="+jd_id, {}).then(response => {
                 console.log("get发送Ajax请求成功", response.data);
                 if(response.data == 'success'){
                   this.$message({
@@ -221,7 +222,7 @@
             });
           },
           refresh:function () {
-            this.$axios.get(this.url+"/getAllJd?pageNow="+this.pageNow, {}).then(response => {
+            this.$axios.get(domain+"/getAllJd?pageNow="+this.pageNow, {}).then(response => {
               console.log("get发送Ajax请求成功", response.data);
               this.jdData = response.data.jdData;
               this.totalPage = response.data.totalPages;
@@ -236,7 +237,7 @@
           }
       },
         created: function () {
-          this.$axios.get("http://192.168.2.110:9999/getAllJd?pageNow="+this.pageNow, {}).then(response => {
+          this.$axios.get(domain+"/getAllJd?pageNow="+this.pageNow, {}).then(response => {
             console.log("get发送Ajax请求成功", response.data);
             this.jdData = response.data.jdData;
             this.totalPage = response.data.totalPages;

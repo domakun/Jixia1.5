@@ -23,8 +23,8 @@
 </template>
 
 <script>
-  import {setCookie} from '../../../util/utilCookie';
-  import {domain} from '../../../util/domain';
+  import {setCookie} from '../../../util/utilCookie'
+  import {domain} from '../../../util/domain'
   export default {
     name: 'login',
     props: {
@@ -49,9 +49,6 @@
       }
     },
     beforeMount: function () {
-      // console.log('父组件的值-----------');
-      // console.log(this.userName);
-      // console.log(this.passWord);
       //注册成功保存值到登录input中
       this.user_login.username = this.userName;
       this.user_login.password = this.passWord;
@@ -67,12 +64,8 @@
       loginSuccessfullyJump: function () {
         if (!this.admin) {
           this.$router.push('/');
-          // console.log('成功跳转主页');
-          // this.$router.push({name: 'Home', params: {userId: this.user_login.username}});
         } else {
           this.$router.push('/Gl');
-          // console.log('成功跳转管理页面');
-          // this.$router.push({name: 'Admin', params: {userId: this.user_login.username}});
         }
       },
       //登录提交
@@ -81,7 +74,6 @@
         if (this.user_login.username && this.user_login.password) {
           let userData = [this.user_login.username, this.user_login.password, this.admin];
           this.$axios.post(`${domain}/tologin`, userData, {
-            //http://192.168.1.108:9999/tologin
             transformRequest: [
               function (data) {
                 let params = '';
