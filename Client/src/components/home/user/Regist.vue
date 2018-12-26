@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  import {domain} from '../../../util/domain'
   export default {
     name: "regist",
     data() {
@@ -82,7 +83,7 @@
           }
         };
         if (subCan()) {
-          this.$axios.post('http://192.168.2.110:9999/toregist', user_data, {
+          this.$axios.post(`${domain}/toregist`, user_data, {
             transformRequest: [
               function (data) {
                 let params = '';
@@ -190,7 +191,8 @@
     overflow: hidden;
   }
   .bottom-register {
-    width: 140px;
+    width: auto;
+    min-width: 130px;
     margin: 10px auto;
     background-color: #000;
     border-radius: 15px;
@@ -202,7 +204,7 @@
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
     position: absolute;
     bottom: -45px;
-    right: 160px;
+    right: 0;
   }
   #toggle-login {
     padding-left: 5px;

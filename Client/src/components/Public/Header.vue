@@ -70,7 +70,7 @@
         userMessage: '',
       }
     },
-    created: function () {
+    mounted: function () {
       this.userMessage = this.getNameToCookie();
       // console.log('页面cookie');
       // console.log(this.getNameToCookie());

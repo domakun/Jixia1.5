@@ -9,7 +9,7 @@
 				<div class="glb_info">
 					冬天就要到了，最火热的旅游地又到了非最南即最北的时候了，那么东北哪里值得玩？要怎么玩？这一份极为详细的撒欢玩雪的攻略，拿上就能玩遍大东北！
 				</div>
-				<a href="#" class="btn">Details</a>
+				<a href="#" class="btn">详情</a>
 				<div class="clear"></div>
 			</div>
 			<div style="width: 100%;height: 20px;"></div>
@@ -22,9 +22,9 @@
 					还有一个月不到就是元旦假期了，大家有什么想去的地方吗？
 					我是一个没见过大风大雪的南方人，去年元旦的时候和同学一起去了哈尔滨
 				</div>
-				<a href="#" class="btn">Details</a>
-				<div class="clear"></div>
+				<a href="#" class="btn">详情</a>
 			</div>
+      <router-link to="" class="load-more"><span>加载更多</span><i class="el-icon-caret-bottom"></i></router-link>
 		</div>
 	</div>
 </template>

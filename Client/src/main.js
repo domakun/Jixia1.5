@@ -6,12 +6,13 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from "axios";
+import global from "./util/global";
 
 Vue.use(ElementUI);
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 Vue.prototype.$axios = axios;
-Vue.config.productionTip = false
-
+Vue.config.productionTip = false;
+Vue.prototype.$global = global;
 
 /* eslint-disable no-new */
 new Vue({

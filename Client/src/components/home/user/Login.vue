@@ -168,7 +168,8 @@
   }
 
   .bottom-register {
-    width: 140px;
+    width: auto;
+    min-width: 130px;
     margin: 10px auto;
     background-color: #000;
     border-radius: 15px;
@@ -176,10 +177,10 @@
     text-align: center;
     font-size: 12px;
     color: #fff;
-    padding: 4px 0;
+    padding: 4px 2px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
     position: absolute;
     bottom: -45px;
-    right: 160px;
+    right: 0;
   }
 </style>

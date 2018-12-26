@@ -60,6 +60,7 @@
   .container-global-inner {
     width: 1128px;
     margin: 0 auto;
+    position: relative;
   }
 
   .main {
@@ -73,6 +74,7 @@
     /*height: 1000px;*/
     margin: 0 auto;
     padding-top: 71px;
+    position: relative;
   }
 
 </style>

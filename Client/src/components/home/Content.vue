@@ -21,27 +21,34 @@
 
     <!--景点-->
     <section class="container-global-inner scenic">
-      <h3><a href="#">Scenic</a></h3>
-      <div class="scenic-intro" v-for="item in scenicArr">
-        <figure>
-          <div>
-            <img :src="item.site" alt="">
-            <!--<img src="../../assets/img/page1_img1.jpg" alt="">-->
-          </div>
-          <figcaption>
-            <h3>景点标题</h3>
-            <span>景点简介</span>
-          </figcaption>
-        </figure>
-      </div>
+      <h3><router-link to="/scenic">Scenic<i class="el-icon-d-arrow-right"></i></router-link ></h3>
+      <!--<el-card class="box-card" shadow="hover">-->
+        <div class="scenic-intro" v-for="item in scenicArr">
+          <figure>
+            <div>
+              <img :src="item.site" alt="">
+              <!--<img src="../../assets/img/page1_img1.jpg" alt="">-->
+            </div>
+            <figcaption>
+              <h3>景点标题</h3>
+              <span>景点简介</span>
+              <router-link to="" class="btn">详情</router-link>
+            </figcaption>
+          </figure>
+        </div>
     </section>
+    <strategy></strategy>
   </main>
 </template>
 
 <script>
+  import Strategy from './strategy/Strategy'
 
   export default {
     name: "content",
+    components: {
+      'strategy': Strategy
+    },
     data() {
       return {
         imgArr: [{site: 'https://kang-1257386628.cos.ap-chengdu.myqcloud.com/slide.jpg'}, {site: 'https://kang-1257386628.cos.ap-chengdu.myqcloud.com/slide1.jpg'}, {site: 'https://kang-1257386628.cos.ap-chengdu.myqcloud.com/slide2.jpg'}, {site: 'https://kang-1257386628.cos.ap-chengdu.myqcloud.com/slide3.jpg'},],
@@ -64,7 +71,7 @@
 
 <style scoped>
   .main {
-    /*height: 10000px;*/
+    height: auto;
     background: #fff;
     width: 1270px;
     margin: 0 auto;
@@ -123,9 +130,9 @@
 
   .scenic {
     width: 1128px;
-    height: 500px;
+    height: auto;
     overflow: hidden;
-    padding-bottom: 70px;
+    /*padding-bottom: 70px;*/
     white-space: nowrap;
   }
 
@@ -134,58 +141,91 @@
     font-family: 'Pathway Gothic One', sans-serif;
     line-height: 44px;
     text-transform: uppercase;
-    padding-top: 62px;
-    padding-bottom: 54px;
-  }
-
-  .scenic h3 a {
-    color: #263555;
+    padding-top: 42px;
+    padding-bottom: 24px;
   }
 
   .scenic .scenic-intro {
     width: 360px;
-    height: 337px;
+    height: auto;
     margin: 0 24px 0 0;
     display: inline-block;
     position: relative;
+    overflow: hidden;
+    white-space: nowrap;
   }
+
   .scenic .scenic-intro figure {
     position: relative;
     z-index: 10;
   }
-  .scenic .scenic-intro figcaption{
+
+  .scenic .scenic-intro figcaption {
     background-color: #193149;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 99;
     font-size: 13px;
     line-height: 19px;
     color: #cbc6c6;
     text-align: left;
-    height: 100%;
-    width: 183px;
+    height: 337px;
+    width: 180px;
     padding: 0 11px;
-    opacity: 0;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-    -o-transform-origin: 0 0;
-    transform-origin: 0 0;
-    -webkit-transform: rotateY(-90deg);
-    -moz-transform: rotateY(-90deg);
-    -o-transform: rotateY(-90deg);
-    transform: rotateY(-90deg);
-    -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
-    -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
-    -o-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
-    transition: transform 0.4s, opacity 0.1s 0.3s;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
+    display: none;
+    transform-style: preserve-3d;
+    transform-origin: left;
+  }
+
+  .scenic:hover .scenic-intro figcaption {
+    animation: scenicAnimation .5s linear alternate;
+  }
+
+  figcaption a.btn {
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #b1aaaa;
+    line-height: 15px;
+    padding: 4px 16px 4px;
+    color: #b1aaaa;
+    display: block;
+    margin-top: 36px;
+    margin-right: 4px;
+    float: right;
+    box-shadow: none;
+  }
+
+  figcaption a.btn:hover {
+    border-color: #ff6f61;
+    color: #ff6f61;
+  }
+
+  figcaption a.btn::after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both
+  }
+
+  @keyframes scenicAnimation {
+    0% {
+      transform-style: preserve-3d;
+      transform: rotateY(-90deg);
+    }
+    50% {
+      transform-style: preserve-3d;
+      transform: rotateY(-45deg);
+    }
+    100% {
+      transform-style: preserve-3d;
+      transform: rotateY(0);
+    }
+  }
+
+  .el-icon-d-arrow-right {
+    color: ;
   }
 </style>
