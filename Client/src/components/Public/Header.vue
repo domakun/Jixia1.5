@@ -23,7 +23,7 @@
               <!--<el-menu-item index="1-3">选项3</el-menu-item>-->
               <!--</el-submenu>-->
               <!--</el-menu>-->
-              <router-link to="/about">关于</router-link>
+              <router-link to="/About">关于</router-link>
             </li>
           </ul>
         </nav>
@@ -142,7 +142,6 @@
   .menu-block {
     width: 1000px;
     height: auto;
-    /*line-height: 153px;*/
     display: inline-block;
     position: absolute;
     top: 0;
@@ -159,7 +158,7 @@
 
   .menu-block .nav-menu li {
     width: 96px;
-    height: 24px;
+    height: 40px;
     margin: 60px 0 0;
     padding: 0 30px;
     float: left;
@@ -179,15 +178,23 @@
   .nav-menu li a,
   .entrance li a {
     width: auto;
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 40px;
     font-family: 'Pathway Gothic One', sans-serif;
-    font-weight: 300;
+    font-weight: 600;
     color: #fff;
-    z-index: 999;
+    z-index: 1;
     text-decoration: none;
   }
-
+  .nav-menu li:hover a {
+    color: #ff6f61;
+    transition: all 1s;
+  }
+  .nav-menu li:hover {
+    background-color: rgba(255,255,255,0.5);
+    transition: all 1s;
+    border-radius: 3px;
+  }
   .entrance {
     position: absolute;
     top: 60px;
@@ -204,6 +211,7 @@
     zoom: 1;
   }
 
+
   .entrance li:nth-of-type(1) {
     border-right: 1px solid #ff6f61;
   }
@@ -212,7 +220,7 @@
   .entrance li span
   {
     font-size: 20px;
-    color: #ff6f61;
+    color: white;
     text-decoration: none;
   }
   .entrance li a:hover {
