@@ -60,6 +60,7 @@
   .container-global-inner {
     width: 1128px;
     margin: 0 auto;
+    position: relative;
   }
 
   .main {
@@ -73,7 +74,11 @@
     /*height: 1000px;*/
     margin: 0 auto;
     padding-top: 71px;
+<<<<<<< HEAD
 		position: relative;
+=======
+    position: relative;
+>>>>>>> 156dde9b6d43a2a981b1b7fa9a99f318cafa6e45
   }
 
 </style>

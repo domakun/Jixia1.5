@@ -22,6 +22,7 @@
   import Gl from '../admin/Gl/Gl'
   import Jd from '../admin/Jd/Jd'
   import User from '../admin/User/User'
+
   export default {
     name: 'Admin',
     components: {

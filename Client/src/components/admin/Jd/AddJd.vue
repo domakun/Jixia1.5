@@ -28,7 +28,8 @@
 <script>
   import { regionData,CodeToText } from 'element-china-area-data'
   import COS from 'cos-js-sdk-v5'
-    export default {
+  import {domain} from '../../../util/domain'
+  export default {
       name: "AddJd",
       methods:{
         tirggerFile:function(event){
@@ -135,7 +136,7 @@
       data(){
           return{
             file:'',
-            url:'http://192.168.2.110:9999',
+            url:domain,
             jdObj:{
               jd_name:'',
               jd_addr:'',

@@ -13,35 +13,45 @@
         </el-carousel>
       </div>
       <div class="banner-intro">
-        <div>THERE ARE PLENTY OF PLACES</div>
+        <div> &nbsp;&nbsp;有很多地方&nbsp;&nbsp;</div>
         <br>
-        <span> that are worth seeing</span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;值得一看&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </div>
     </section>
 
     <!--景点-->
     <section class="container-global-inner scenic">
-      <h3><a href="#">Scenic</a></h3>
+      <h3>
+        <router-link to="/scenic">风景胜地</router-link>
+      </h3>
       <div class="scenic-intro" v-for="item in scenicArr">
-        <figure>
-          <div>
-            <img :src="item.site" alt="">
-            <!--<img src="../../assets/img/page1_img1.jpg" alt="">-->
-          </div>
-          <figcaption>
-            <h3>景点标题</h3>
-            <span>景点简介</span>
-          </figcaption>
-        </figure>
+        <el-card class="box-card">
+          <figure>
+            <div class="scenic-img">
+              <img :src="item.site" alt="">
+              <!--<img src="../../assets/img/page1_img1.jpg" alt="">-->
+            </div>
+            <figcaption>
+              <h4 class="scenic-title">景点标题</h4>
+              <p class="scenic-message">景点简介景点简介景点简介景点简介景点简介景点简介景点简介景点简介</p>
+              <router-link to="" class="btn"><i class="el-icon-arrow-right"></i></router-link>
+            </figcaption>
+          </figure>
+        </el-card>
       </div>
     </section>
+    <strategy></strategy>
   </main>
 </template>
 
 <script>
+  import Strategy from './strategy/Strategy'
 
   export default {
     name: "content",
+    components: {
+      'strategy': Strategy
+    },
     data() {
       return {
         imgArr: [{site: 'https://kang-1257386628.cos.ap-chengdu.myqcloud.com/slide.jpg'}, {site: 'https://kang-1257386628.cos.ap-chengdu.myqcloud.com/slide1.jpg'}, {site: 'https://kang-1257386628.cos.ap-chengdu.myqcloud.com/slide2.jpg'}, {site: 'https://kang-1257386628.cos.ap-chengdu.myqcloud.com/slide3.jpg'},],
@@ -56,15 +66,16 @@
     },
     methods: {},
     //生命周期函数必须写在外边
-    // created: function () {
-    //   alert('chuangji')
-    // },
+    created: function () {
+
+    },
   }
 </script>
 
 <style scoped>
+
   .main {
-    /*height: 10000px;*/
+    height: auto;
     background: #fff;
     width: 1270px;
     margin: 0 auto;
@@ -123,9 +134,9 @@
 
   .scenic {
     width: 1128px;
-    height: 500px;
+    height: auto;
     overflow: hidden;
-    padding-bottom: 70px;
+    /*padding-bottom: 70px;*/
     white-space: nowrap;
   }
 
@@ -134,58 +145,83 @@
     font-family: 'Pathway Gothic One', sans-serif;
     line-height: 44px;
     text-transform: uppercase;
-    padding-top: 62px;
-    padding-bottom: 54px;
-  }
-
-  .scenic h3 a {
-    color: #263555;
+    padding-top: 42px;
+    padding-bottom: 24px;
   }
 
   .scenic .scenic-intro {
-    width: 360px;
-    height: 337px;
-    margin: 0 24px 0 0;
-    display: inline-block;
+    width: 340px;
+    height: auto;
+    padding: 0 10px;
+    margin: 0 10px;
     position: relative;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
   }
+
   .scenic .scenic-intro figure {
     position: relative;
     z-index: 10;
   }
-  .scenic .scenic-intro figcaption{
-    background-color: #193149;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    font-size: 13px;
-    line-height: 19px;
-    color: #cbc6c6;
-    text-align: left;
-    height: 100%;
-    width: 183px;
-    padding: 0 11px;
-    opacity: 0;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-    -o-transform-origin: 0 0;
-    transform-origin: 0 0;
-    -webkit-transform: rotateY(-90deg);
-    -moz-transform: rotateY(-90deg);
-    -o-transform: rotateY(-90deg);
-    transform: rotateY(-90deg);
-    -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
-    -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
-    -o-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
-    transition: transform 0.4s, opacity 0.1s 0.3s;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -o-box-sizing: border-box;
+
+  .scenic .scenic-intro figure .scenic-img {
+    width: 320px;
+    height: 300px;
+    margin: 5px auto 0;
+  }
+  .scenic .scenic-intro figure .scenic-img img{
+    width: 320px;
+    height: 300px;
+  }
+  .box-card {
+    height: auto;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  /*图片描述*/
+  .scenic .scenic-intro figcaption {
+    width: 320px;
+    height: auto;
+    margin: 0 auto;
+    padding: 5px 3px;
     box-sizing: border-box;
+  }
+  figcaption .scenic-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+    color: #ff6f61;
+  }
+  figcaption .scenic-message {
+    white-space: normal;
+    text-indent: 2em;
+  }
+  figcaption a.btn {
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #b1aaaa;
+    line-height: 15px;
+    padding: 4px 16px 4px;
+    margin: 5px 0;
+    color: #b1aaaa;
+    display: block;
+    float: right;
+    box-shadow: none;
+  }
+
+  figcaption a.btn:hover {
+    border-color: #ff6f61;
+    color: #ff6f61;
+  }
+
+  figcaption a.btn::after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both
   }
 </style>

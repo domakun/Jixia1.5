@@ -23,8 +23,9 @@
 </template>
 
 <script>
-  import {setCookie} from '../../../util/utilCookie';
-  import {domain} from '../../../util/domain';
+  import {setCookie} from '../../../util/utilCookie'
+  import {domain} from '../../../util/domain'
+
   export default {
     name: 'login',
     props: {
@@ -49,9 +50,6 @@
       }
     },
     beforeMount: function () {
-      // console.log('父组件的值-----------');
-      // console.log(this.userName);
-      // console.log(this.passWord);
       //注册成功保存值到登录input中
       this.user_login.username = this.userName;
       this.user_login.password = this.passWord;
@@ -65,14 +63,16 @@
       },
       //登录成功跳转
       loginSuccessfullyJump: function () {
-        if (!this.admin) {
-          this.$router.push('/');
-          // console.log('成功跳转主页');
-          // this.$router.push({name: 'Home', params: {userId: this.user_login.username}});
-        } else {
-          this.$router.push('/Gl');
-          // console.log('成功跳转管理页面');
-          // this.$router.push({name: 'Admin', params: {userId: this.user_login.username}});
+        if (!this.$store.state.status) {
+          // console.log('登录成功');
+          if (!this.admin) {
+            // console.log(this.$store.state.user)
+            this.$router.push('/');
+            this.$store.commit('setStorage',this.user_login.username)
+          } else {
+            this.$router.push('/admin');
+            this.$store.commit('setStorage',this.user_login.username)
+          }
         }
       },
       //登录提交
@@ -81,7 +81,6 @@
         if (this.user_login.username && this.user_login.password) {
           let userData = [this.user_login.username, this.user_login.password, this.admin];
           this.$axios.post(`${domain}/tologin`, userData, {
-            //http://192.168.1.108:9999/tologin
             transformRequest: [
               function (data) {
                 let params = '';
@@ -96,11 +95,12 @@
             //登录成功跳转
             if (response.data == 'success') {
               this.loginSuccessfullyJump();
-              setCookie(this.user_login.username,this.user_login.password,7)
+              setCookie(this.user_login.username, this.user_login.password, 7)
             } else {
               this.hintText = '用户名不存在或密码不正确';
               this.user_login.username = '';
               this.user_login.password = '';
+              this.$store.commit('$_removeStorage')
             }
           }).catch(response => {//请求失败
             console.log('Ajax请求失败', response)
@@ -176,7 +176,8 @@
   }
 
   .bottom-register {
-    width: 140px;
+    width: auto;
+    min-width: 130px;
     margin: 10px auto;
     background-color: #000;
     border-radius: 15px;
@@ -184,10 +185,10 @@
     text-align: center;
     font-size: 12px;
     color: #fff;
-    padding: 4px 0;
+    padding: 4px 2px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
     position: absolute;
     bottom: -45px;
-    right: 160px;
+    right: 0;
   }
 </style>

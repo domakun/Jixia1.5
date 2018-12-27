@@ -12,7 +12,7 @@
               <router-link to="/scenic">景区</router-link>
             </li>
             <li class="menu-community">
-              <router-link to="">社区</router-link>
+              <router-link to="/Community">社区</router-link>
             </li>
             <li class="menu-about">
               <!--<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">-->
@@ -23,7 +23,7 @@
               <!--<el-menu-item index="1-3">选项3</el-menu-item>-->
               <!--</el-submenu>-->
               <!--</el-menu>-->
-              <router-link to="/about">关于</router-link>
+              <router-link to="/About">关于</router-link>
             </li>
           </ul>
         </nav>
@@ -44,7 +44,9 @@
                   <i class="el-icon-caret-bottom"></i>
                 </div>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item><router-link to="/me">个人中心</router-link></el-dropdown-item>
+                  <el-dropdown-item>
+                    <router-link to="/me">个人中心</router-link>
+                  </el-dropdown-item>
                   <el-dropdown-item><span @click="exitSelf">退出</span></el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -58,7 +60,7 @@
 </template>
 
 <script>
-  import {delCookie} from '../../util/utilCookie';
+  import {delCookie, getCookie} from '../../util/utilCookie';
 
   export default {
     name: "header",
@@ -70,14 +72,33 @@
         userMessage: '',
       }
     },
+    computed: {
+      getLocalStorage() {
+        return this.$store.getters.getStorage
+      }
+    },
     created: function () {
-      this.userMessage = this.getNameToCookie();
-      // console.log('页面cookie');
-      // console.log(this.getNameToCookie());
-      // console.log(document.cookie);
-      if (this.userMessage) {
-        this.showRegister = false;
-        this.showPersonal = true;
+      // console.log(typeof this.$store.state.user);
+      // console.log(this.$store.state.user);
+      //判断是否为登录状态
+      // console.log('main的工具执行');
+      // console.log(this.getLocalStorage);
+      // console.log(this.$store.state.user);
+      // console.log(localStorage.getItem('user'));
+      // console.log(getCookie(this.getLocalStorage));
+      //用户状态管理
+      if (this.getLocalStorage && getCookie(this.getLocalStorage)) {
+        this.userMessage = this.getLocalStorage;
+        // console.log('页面cookie');
+        // console.log(this.getNameToCookie());
+        // console.log(document.cookie);
+        if (this.userMessage) {
+          this.showRegister = false;
+          this.showPersonal = true;
+        } else {
+          this.showRegister = true;
+          this.showPersonal = false;
+        }
       } else {
         this.showRegister = true;
         this.showPersonal = false;
@@ -86,22 +107,24 @@
     methods: {
       //用户退出
       exitSelf: function () {
-        let del = delCookie(this.userMessage);
-        if (del) {
-          this.showRegister = true;
-          this.showPersonal = false;
-          this.$router.push('/');
-        } else {
-          this.showRegister = false;
-          this.showPersonal = true;
-          console.log('删除失败')
+        // console.log('退出-----');
+        // console.log(this.$store.state.user);
+        //登录状态下才执行
+        if (this.$store.state.user) {
+          // console.log('in');
+          // let del = delCookie(this.userMessage);
+          if (delCookie(this.userMessage)) {
+            this.showRegister = true;
+            this.showPersonal = false;
+            this.$router.push('/');
+            this.$store.commit('removeStorage')
+          } else {
+            this.showRegister = false;
+            this.showPersonal = true;
+            console.log('删除失败')
+          }
         }
       },
-      //获取浏览器cookie
-      getNameToCookie: function () {
-        let index = document.cookie.indexOf("\=", 0);
-        return document.cookie.substring(0, index);
-      }
     }
   }
 </script>
@@ -111,6 +134,7 @@
     text-decoration: none;
     color: #ff6f61;
   }
+
   header {
     width: 1272px;
     height: 100px;
@@ -142,7 +166,6 @@
   .menu-block {
     width: 1000px;
     height: auto;
-    /*line-height: 153px;*/
     display: inline-block;
     position: absolute;
     top: 0;
@@ -159,7 +182,7 @@
 
   .menu-block .nav-menu li {
     width: 96px;
-    height: 24px;
+    height: 40px;
     margin: 60px 0 0;
     padding: 0 30px;
     float: left;
@@ -179,16 +202,30 @@
   .nav-menu li a,
   .entrance li a {
     width: auto;
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 40px;
     font-family: 'Pathway Gothic One', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     color: #fff;
-    z-index: 999;
+    z-index: 1;
     text-decoration: none;
+    letter-spacing: 3px;
+  }
+
+  .nav-menu li:hover a {
+    color: #ff6f61;
+    transition: all 1s;
+  }
+
+  .nav-menu li:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 1s;
+    border-radius: 3px;
   }
 
   .entrance {
+    height: 40px;
+    line-height: 40px;
     position: absolute;
     top: 60px;
     right: 81px;
@@ -196,25 +233,27 @@
 
   .entrance li {
     width: auto;
-    height: 20px;
-    line-height: 20px;
+    height: 40px;
+    line-height: 50px;
     padding: 0 10px;
     float: left;
     vertical-align: bottom;
+    box-sizing: border-box;
     zoom: 1;
   }
 
-  .entrance li:nth-of-type(1) {
-    border-right: 1px solid #ff6f61;
+  .entrance li:nth-of-type(1)::after {
+    /*content: '|';*/
+    /*border-right:  1px solid #ff6f61;*/
   }
 
   .entrance li a,
-  .entrance li span
-  {
-    font-size: 20px;
-    color: #ff6f61;
+  .entrance li span {
+    font-size: 16px;
+    color: white;
     text-decoration: none;
   }
+
   .entrance li a:hover {
     text-decoration: underline;
   }

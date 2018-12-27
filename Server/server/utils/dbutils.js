@@ -6,6 +6,7 @@ const pool = mysql.createPool({
     password: '123',
     database: 'jixia',
     port:3306 ,
+<<<<<<< HEAD
     //
     //self
 //     host: 'localhost',
@@ -13,6 +14,15 @@ const pool = mysql.createPool({
 //     password: '950918',
 //     database: 'login',
 //     port: 3306
+=======
+
+    //self
+    // host: 'localhost',
+    // user: 'root',
+    // password: '950918',
+    // database: 'login',
+    // port: 3306
+>>>>>>> 156dde9b6d43a2a981b1b7fa9a99f318cafa6e45
 }) ;
 exports.pool = pool ;
 
@@ -28,8 +38,6 @@ function select(sql,param,func){
             // console.log(sql,param);
             conn.query(sql,param,function(error,result){
                 conn.release() ;      //没有关闭连接，将连接对象返回连接池
-                // console.log(sql) ;
-                // console.log(result,'--->dbutil的result') ;
                 func(result) ;     //回调函数
             })
         }

@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const utils = require('./utils')
+const webpack = require('webpack')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
@@ -89,6 +90,7 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   },
+<<<<<<< HEAD
 	'/ueditor': {
 		target: 'http://localhost:9999',
 		changeOrigin: true,
@@ -96,4 +98,13 @@ module.exports = {
 			'^/ueditor': 'ueditor'
 		}
 	}
+=======
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.ProvidePlugin({
+      jQuery: "jquery",
+      $: "jquery"
+    })
+  ]
+>>>>>>> 156dde9b6d43a2a981b1b7fa9a99f318cafa6e45
 }
