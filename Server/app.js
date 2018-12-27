@@ -11,6 +11,29 @@ const GlController = require('./server/controller/GlController.js') ;
 const validateCon = require('./server/controller/validateCon.js');
 const userController = require('./server/controller/userController');
 
+// 加载ueditor模块
+const ueditor = require('ueditor');
+const path = require('path');
+//使用模块
+app.use('/api/ue',ueditor(path.join(__dirname,'public'),function(req,res,next) {
+	// ueditor客户发起上传图片请求
+	if(req.query.action === 'uploadimage') {
+		var foo = req.ueditor;
+		var imgname = req.ueditor.filename;
+		var img_url = '/ueditor/images/';
+		res.ue_up(img_url);
+		res.setHeader('Content-Type','text/html');
+	}else if(req.query.action === 'listimage'){//客户端发起图片列表请求
+		var dir_url = '/ueditor/images/';
+		res.ue_list(dir_url);//客户端会列出dir_url目录下所有图片
+		
+	}else {//客户端发起其他请求
+		console.log('config.json');
+		res.serHeader('Content-Type','application/json');
+		res.redirect('/ueditor/nodejs/config.js');
+	}
+}));
+
 
 app.use(cookieParser('lifeissimpebutyoumadeitcomplicated'));
 // 设置资源后缀名和默认地址
@@ -43,6 +66,8 @@ app.get('/*',function(req,res){
         JdController.getJdId(req,res)
     }else if(pathname == '/jump2showJd'){   //跳转展示景点的页面
         JdController.jump2showJd(req,res)
+    }else if(pathname == '/getAllGl'){
+        GlController.showGl(req,res)
     }else if(pathname == '/getSomeGl'){//查看攻略接口，，管理界面暂时用不了，不要删
         GlController.showSomeGl(req,res)
     }else if(pathname == '/deleteGl'){
@@ -51,11 +76,9 @@ app.get('/*',function(req,res){
         GlController.searchGl(req,res)
     }else if( pathname == '/getAllUser'){
         userController.showUsers(req,res);
-    }
-    else if( pathname == '/deleteUser'){
+    }else if( pathname == '/deleteUser'){
         userController.deleteUser(req,res);
-    }
-    else if(pathname == '/searchUser'){
+    }else if(pathname == '/searchUser'){
         console.log('=======>请求searchUser');
         userController.searchUser(req,res)
     }

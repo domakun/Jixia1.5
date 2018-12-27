@@ -19,6 +19,7 @@
     "cos-nodejs-sdk-v5": "^2.5.5",
     "element-china-area-data": "^4.1.1",
     "element-ui": "^2.4.11",
+    "v-distpicker": "^1.0.21",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -88,5 +89,10 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "test"
+  },
+  "license": "ISC"
 }

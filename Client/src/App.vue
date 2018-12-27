@@ -73,6 +73,7 @@
     /*height: 1000px;*/
     margin: 0 auto;
     padding-top: 71px;
+		position: relative;
   }
 
 </style>

@@ -1,1 +1,1 @@
-exports.domain = 'http://192.168.2.110:9999';
+exports.domain = 'http://localhost:9999';

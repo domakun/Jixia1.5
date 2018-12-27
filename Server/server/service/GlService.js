@@ -31,7 +31,6 @@ function getTotalPage(cb) {
 	});
 }
 
-
 // 删除攻略
 function deleteStrategy(glb_id,cb) {
 	GlModule.delStrategy(glb_id,function(result) {
@@ -69,52 +68,15 @@ function searchGl(pageNow,jd_addr,jd_name,content,date,author_id,cb) {
 
 exports.searchGl = searchGl;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 查看攻略
 function showSomestrategy(glb_id,cb) {
+	// var result = {};
 	GlModule.showSomestrategy(glb_id,function(result) {
+// 		result.StrategyDetails = StrategyDetails;
+// 		console.log('service的StrategyDetails',result.StrategyDetails);
 		cb(result)
 	});
 }
 
 exports.showSomestrategy = showSomestrategy;
 
-
-
-
-// 查询筛选页面数据和总页数
-// exports.queryByCondition = queryByCondition ;
-// function queryByCondition(pageNow,jd_addr,jd_id,jd_name,func){
-//     console.log(pageNow,'pageNow');
-//     var first = (pageNow-1)*publicdata.max ;
-//     var result = {} ;
-//     console.log(first);
-//     JdModule.selectSomeJds(first,publicdata.max,jd_addr,jd_id,jd_name,function(r){
-//         // 回调查询总页数
-//         result.jdData = r ;
-//         JdModule.getSomeCount(jd_addr,jd_id,jd_name,function(res){
-//             res = res[0]['count(*)'] ;
-//             result.totalRows = res ;
-//             res = res/publicdata.max ;
-//             res = Math.ceil(res) ;
-//             result.totalPages = res ;
-//             func(result) ;
-//         }) ;
-// 
-//     }) ;
-// }

@@ -2,7 +2,7 @@
 	<div class="panel">
 		<el-form :inline="true" :model="glObj" class="demo-form-inline">
 			<el-form-item label="地区">
-				<el-input v-model="glObj.jd_addr" placeholder="地区"></el-input>
+				<v-distpicker hide-area @selected="onSelected"></v-distpicker>
 			</el-form-item>
 			<el-form-item label="关键字">
 				<el-input v-model="glObj.content" placeholder="关键字"></el-input>
@@ -49,11 +49,14 @@
 </template>
 
 <script>
+	import {domain} from '../../../util/domain.js'
+	import VDistpicker from 'v-distpicker'
+
 	export default {
 		name: 'SelectStrategy',
 		data() {
 			return {
-			  url:'http://192.168.2.110:9999',
+			  url: domain,
 				glObj: {
 					jd_addr: '',
 					content: '',
@@ -67,6 +70,9 @@
 				totalRows: 1,
 				current: 1
 			};
+		},
+		components: {
+			'v-distpicker': VDistpicker
 		},
 		methods: {
 			change_date: function(glObj) {
@@ -104,6 +110,18 @@
 					console.log("get发送Ajax请求失败", response);
 				})
 			},
+			onSelected:function(data) {
+				console.log(data);
+				var city = data.city.value;
+				var len = city.length; 
+				if(city == '市' ){
+					city = ''
+				}else if(city.slice(len-2,len) == '城区' || city.slice(len-2,len) == '郊县') {
+					city = ''
+				}
+				this.glObj.jd_addr = data.province.value + city;
+				console.log(this.glObj.jd_addr);
+			},
 			onSubmit:function () {
 				this.pageNow = 1  ;
 				this.refresh()
@@ -117,7 +135,7 @@
 					confirmButtonText: '确定',
 					cancelButtonText: '取消'
 				}).then(() => {
-					this.$axios.get("/deleteGl?glb_id=" + glb_id, {}).then(response => {
+					this.$axios.get(this.url+"/deleteGl?glb_id=" + glb_id, {}).then(response => {
 						console.log("get发送请求成功", response.data);
 						if (response.data == 'success') {
 							this.$message({
@@ -150,5 +168,9 @@
 </script>
 
 <style>
-
+	.pageInation {
+		position: absolute;
+		bottom: 30px;
+		left: 400px ;
+	}
 </style>

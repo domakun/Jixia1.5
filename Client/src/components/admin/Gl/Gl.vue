@@ -17,7 +17,8 @@
 <script>
 	import StrategyAll from './StrategyAll'
 	import SelectStrategy from './SelectStrategy'
-
+	import {domain} from '../../../util/domain.js'
+	
   export default {
     name:'Gl',
 		components: {
@@ -26,6 +27,7 @@
 		},
 		data:function () {
       return {
+				url: domain,
         StrategyData:{},
         totalPage:1,
         pageNow:1
@@ -33,7 +35,7 @@
     },
 		methods: {
 			get: function() {
-				this.$axios.get("http://192.168.2.110:9999/getAllGl?pageNow="+this.pageNow, {}).then(response => {
+				this.$axios.get(this.url+"/getAllGl?pageNow="+this.pageNow, {}).then(response => {
           console.log("get发送Ajax请求成功", response.data);
           this.StrategyData = response.data.StrategyData;
           this.totalPage = response.data.totalPages;

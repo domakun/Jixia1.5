@@ -40,7 +40,7 @@
       toGl: function () {
         this.$router.push('/Gl')
       }
-    }
+    } 
   }
 </script>
 <style scoped>

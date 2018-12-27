@@ -88,5 +88,12 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
+	'/ueditor': {
+		target: 'http://localhost:9999',
+		changeOrigin: true,
+		pathRewrite: {
+			'^/ueditor': 'ueditor'
+		}
+	}
 }

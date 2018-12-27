@@ -46,13 +46,6 @@ function searchGl(req,res) {
 
 exports.searchGl = searchGl;
 
-
-
-
-
-
-
-
 // 查看攻略
 function showSomeGl(req,res) {
 	var glb_id = req.query.glb_id;
@@ -63,32 +56,3 @@ function showSomeGl(req,res) {
 
 exports.showSomeGl = showSomeGl;
 
-
-
-// function showSomeGl(req,res){
-//      for(var item in req.query){
-//       if(req.query[item] == ''){
-//         req.query[item] = '%' ;
-//       }else if(item != 'pageNow') {
-//         req.query[item] = '%'+req.query[item]+'%' ;
-//       }
-//      }
-//      console.log('+++++++',req.query) ;
-//     var pageNow = req.query.pageNow ;
-//     var gl_addr = req.query.gl_addr ;
-//     var gl_id = req.query.gl_id ;
-//     var gl_name = req.query.gl_name ;
-//     GlService.queryByCondition(pageNow,gl_addr,gl_id,gl_name,function(result){
-//         // console.log(result,">>>result") ;
-//         res.json(result) ;
-//     }) ;
-// }
-// 
-// // 删除
-// exports.deleteGl = deleteGl  ;
-// function deleteGl(req,res){
-//   var gl_id = req.query.gl_id ; 
-//   GlService.deleteGl(gl_id,function(result){
-//     res.json(result) ;
-//   }) ;
-// }
