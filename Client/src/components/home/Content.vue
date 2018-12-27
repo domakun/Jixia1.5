@@ -13,29 +13,32 @@
         </el-carousel>
       </div>
       <div class="banner-intro">
-        <div>THERE ARE PLENTY OF PLACES</div>
+        <div> &nbsp;&nbsp;有很多地方&nbsp;&nbsp;</div>
         <br>
-        <span> that are worth seeing</span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;值得一看&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </div>
     </section>
 
     <!--景点-->
     <section class="container-global-inner scenic">
-      <h3><router-link to="/scenic">Scenic<i class="el-icon-d-arrow-right"></i></router-link ></h3>
-      <!--<el-card class="box-card" shadow="hover">-->
-        <div class="scenic-intro" v-for="item in scenicArr">
+      <h3>
+        <router-link to="/scenic">风景胜地</router-link>
+      </h3>
+      <div class="scenic-intro" v-for="item in scenicArr">
+        <el-card class="box-card">
           <figure>
-            <div>
+            <div class="scenic-img">
               <img :src="item.site" alt="">
               <!--<img src="../../assets/img/page1_img1.jpg" alt="">-->
             </div>
             <figcaption>
-              <h3>景点标题</h3>
-              <span>景点简介</span>
-              <router-link to="" class="btn">详情</router-link>
+              <h4 class="scenic-title">景点标题</h4>
+              <p class="scenic-message">景点简介景点简介景点简介景点简介景点简介景点简介景点简介景点简介</p>
+              <router-link to="" class="btn"><i class="el-icon-arrow-right"></i></router-link>
             </figcaption>
           </figure>
-        </div>
+        </el-card>
+      </div>
     </section>
     <strategy></strategy>
   </main>
@@ -63,13 +66,14 @@
     },
     methods: {},
     //生命周期函数必须写在外边
-    // created: function () {
-    //   alert('chuangji')
-    // },
+    created: function () {
+
+    },
   }
 </script>
 
 <style scoped>
+
   .main {
     height: auto;
     background: #fff;
@@ -146,11 +150,12 @@
   }
 
   .scenic .scenic-intro {
-    width: 360px;
+    width: 340px;
     height: auto;
-    margin: 0 24px 0 0;
-    display: inline-block;
+    padding: 0 10px;
+    margin: 0 10px;
     position: relative;
+    display: inline-block;
     overflow: hidden;
     white-space: nowrap;
   }
@@ -160,38 +165,48 @@
     z-index: 10;
   }
 
+  .scenic .scenic-intro figure .scenic-img {
+    width: 320px;
+    height: 300px;
+    margin: 5px auto 0;
+  }
+  .scenic .scenic-intro figure .scenic-img img{
+    width: 320px;
+    height: 300px;
+  }
+  .box-card {
+    height: auto;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  /*图片描述*/
   .scenic .scenic-intro figcaption {
-    background-color: #193149;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 99;
-    font-size: 13px;
-    line-height: 19px;
-    color: #cbc6c6;
+    width: 320px;
+    height: auto;
+    margin: 0 auto;
+    padding: 5px 3px;
+    box-sizing: border-box;
+  }
+  figcaption .scenic-title {
+    font-size: 18px;
+    font-weight: 700;
     text-align: left;
-    height: 337px;
-    width: 180px;
-    padding: 0 11px;
-    display: none;
-    transform-style: preserve-3d;
-    transform-origin: left;
+    color: #ff6f61;
   }
-
-  .scenic:hover .scenic-intro figcaption {
-    animation: scenicAnimation .5s linear alternate;
+  figcaption .scenic-message {
+    white-space: normal;
+    text-indent: 2em;
   }
-
   figcaption a.btn {
     font-size: 15px;
     border-radius: 5px;
     border: 1px solid #b1aaaa;
     line-height: 15px;
     padding: 4px 16px 4px;
+    margin: 5px 0;
     color: #b1aaaa;
     display: block;
-    margin-top: 36px;
-    margin-right: 4px;
     float: right;
     box-shadow: none;
   }
@@ -208,24 +223,5 @@
     display: block;
     visibility: hidden;
     clear: both
-  }
-
-  @keyframes scenicAnimation {
-    0% {
-      transform-style: preserve-3d;
-      transform: rotateY(-90deg);
-    }
-    50% {
-      transform-style: preserve-3d;
-      transform: rotateY(-45deg);
-    }
-    100% {
-      transform-style: preserve-3d;
-      transform: rotateY(0);
-    }
-  }
-
-  .el-icon-d-arrow-right {
-    color: ;
   }
 </style>

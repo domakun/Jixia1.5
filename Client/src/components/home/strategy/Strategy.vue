@@ -1,6 +1,6 @@
 <template>
   <section class="container-global-inner strategy">
-    <h3 class="title"><router-link to="/strategy">Strategy<i class="el-icon-d-arrow-right"></i></router-link></h3>
+    <h3 class="title"><router-link to="/strategy">攻略</router-link></h3>
     <div class="left-message">
       <el-tabs type="border-card">
         <el-tab-pane>

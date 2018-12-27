@@ -12,7 +12,8 @@
         </div>
         <!--加载按钮-->
         <div class="load_btn">
-          <el-button type="primary" @click="loadFunc" :disabled='disabled_load' :loading="load">{{load_more}}</el-button>
+          <el-button type="primary" @click="loadFunc" :disabled='disabled_load' :loading="load">{{load_more}}
+          </el-button>
         </div>
       </div>
     </main>
@@ -28,43 +29,44 @@
     name: "scenic",
     components: {
       topheader: Header,
-      ScenicComponent:ScenicComponent
-      },
-    data:function () {
+      ScenicComponent: ScenicComponent
+    },
+    data: function () {
       return {
         jd_data: [],
         pageNow: 1,
         load: false,
-        disabled_load:false,
-        load_more:'加载更多'
+        disabled_load: false,
+        load_more: '加载更多'
       }
     },
-    methods:{
-      loadFunc:function () {
-
-        this.load = !this.load
-        this.$axios.get(domain+"/getAllJd?pageNow="+this.pageNow, {}).then(response => {
+    methods: {
+      loadFunc: function () {
+        this.load = !this.load;
+        this.$axios.get(domain + "/getAllJd?pageNow=" + this.pageNow, {}).then(response => {
           console.log("get发送Ajax请求成功", response.data);
           this.jd_data = this.jd_data.concat(response.data.jdData)
-          this.pageNow = this.pageNow + 1 ;
-          this.load = !this.load
+          this.pageNow = this.pageNow + 1;
+          this.load = !this.load;
           //判断数据是否加载完毕
-          if(this.jd_data.length >= response.data.totalRows ){
+          if (this.jd_data.length >= response.data.totalRows) {
             this.disabled_load = true
             this.load_more = "没有更多数据了(●'◡'●)"
           }
-        }).catch(response=> {
-          console.log("get发送Ajax请求失败",response);
+        }).catch(response => {
+          console.log("get发送Ajax请求失败", response);
         })
       }
     },
-    created:function () {
-      this.$axios.get(domain+"/getAllJd?pageNow="+this.pageNow, {}).then(response => {
+    created: function () {
+      this.$axios.get(domain + "/getAllJd?pageNow=" + this.pageNow, {
+
+      }).then(response => {
         console.log("get发送Ajax请求成功", response.data);
         this.jd_data = this.jd_data.concat(response.data.jdData)
-        this.pageNow = this.pageNow + 1 ;
-      }).catch(response=> {
-        console.log("get发送Ajax请求失败",response);
+        this.pageNow = this.pageNow + 1;
+      }).catch(response => {
+        console.log("get发送Ajax请求失败", response);
       })
     }
 
@@ -72,12 +74,12 @@
 </script>
 
 <style scoped>
-a:hover {
-  text-decoration: none;
-}
-  .load_btn{
-    margin-top: 30px;
-    margin: 0 auto ;
+  a:hover {
+    text-decoration: none;
+  }
+
+  .load_btn {
+    margin: 30px auto 0;
     width: 200px;
     height: 100px;
   }

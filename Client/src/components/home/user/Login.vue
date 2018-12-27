@@ -25,6 +25,7 @@
 <script>
   import {setCookie} from '../../../util/utilCookie'
   import {domain} from '../../../util/domain'
+
   export default {
     name: 'login',
     props: {
@@ -62,10 +63,16 @@
       },
       //登录成功跳转
       loginSuccessfullyJump: function () {
-        if (!this.admin) {
-          this.$router.push('/');
-        } else {
-          this.$router.push('/Gl');
+        if (!this.$store.state.status) {
+          // console.log('登录成功');
+          if (!this.admin) {
+            // console.log(this.$store.state.user)
+            this.$router.push('/');
+            this.$store.commit('setStorage',this.user_login.username)
+          } else {
+            this.$router.push('/admin');
+            this.$store.commit('setStorage',this.user_login.username)
+          }
         }
       },
       //登录提交
@@ -88,11 +95,12 @@
             //登录成功跳转
             if (response.data == 'success') {
               this.loginSuccessfullyJump();
-              setCookie(this.user_login.username,this.user_login.password,7)
+              setCookie(this.user_login.username, this.user_login.password, 7)
             } else {
               this.hintText = '用户名不存在或密码不正确';
               this.user_login.username = '';
               this.user_login.password = '';
+              this.$store.commit('$_removeStorage')
             }
           }).catch(response => {//请求失败
             console.log('Ajax请求失败', response)

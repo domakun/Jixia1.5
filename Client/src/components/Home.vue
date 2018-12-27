@@ -32,11 +32,11 @@
 
 <style>
   h3 a{
-    color: #ff6f61;
+    color: #000;
+    font-size: 28px;
+    font-weight: 400;
   }
-  .el-icon-d-arrow-right{
-    padding-left: 5px;
-    color: #3d3d3d;
+  h3 a:hover {
+    text-decoration: none;
   }
-
 </style>
