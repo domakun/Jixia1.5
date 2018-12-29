@@ -94,6 +94,6 @@ export default new Router({
       path:'/Community',
       name:'Community',
       component: Community
-    },
-
+    }
+    ]
 })

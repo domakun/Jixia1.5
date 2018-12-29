@@ -10,7 +10,6 @@ const JdController = require('./server/controller/JdController.js');
 const GlController = require('./server/controller/GlController.js');
 const validateCon = require('./server/controller/validateCon.js');
 const userController = require('./server/controller/userController');
-<<<<<<< HEAD
 
 // 加载ueditor模块
 const ueditor = require('ueditor');
@@ -35,9 +34,7 @@ app.use('/api/ue',ueditor(path.join(__dirname,'public'),function(req,res,next) {
 	}
 }));
 
-=======
 const nineController = require('./server/controller/nineController');
->>>>>>> 156dde9b6d43a2a981b1b7fa9a99f318cafa6e45
 
 app.use(cookieParser('lifeissimpebutyoumadeitcomplicated'));
 // 设置资源后缀名和默认地址
@@ -113,7 +110,6 @@ app.get('/*', function (req, res) {
         userController.deleteUser(req, res);
     }
     else if (pathname == '/searchUser') {
->>>>>>> 156dde9b6d43a2a981b1b7fa9a99f318cafa6e45
         console.log('=======>请求searchUser');
         userController.searchUser(req, res)
     }
