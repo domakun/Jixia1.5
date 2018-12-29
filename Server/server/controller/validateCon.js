@@ -6,19 +6,15 @@ app.use(cookieParser('lifeissimpebutyoumadeitcomplicated'));
 
 //登录控制
 exports.userLoginCheck = function (req, res) {
-    // console.log('validateCon----');
-    // console.log(typeof req.body[2]); // string
     // 注意键名
     let username = req.body[0];
     let password = req.body[1];
     let admin = req.body[2];
     validateServer.queryUserCount(username, password, admin, function (result) {
-        console.log('validateCon----');
-        console.log(result);
-        let num = result[0].num;
-        if (num == 1) {
-            // 这里用的时vue脚手架 ，无法传递cookie 到html
-            // res.cookie('userMessage', {'name': username, 'pwd': password}, {maxAge: 1000 * 60, signed: true});
+        let pwd = result[0].user_pwd;
+        if (pwd == password) {
+            console.log('>>>>num',result[0])
+            res.cookie('userMessage',{'name': username,'user_id':result[0].user_id})
             res.end('success')
         }
         else {

@@ -10,8 +10,6 @@ const JdController = require('./server/controller/JdController.js');
 const GlController = require('./server/controller/GlController.js');
 const validateCon = require('./server/controller/validateCon.js');
 const userController = require('./server/controller/userController');
-const nineController = require('./server/controller/nineController');
-
 
 // 加载ueditor模块
 const ueditor = require('ueditor');
@@ -35,7 +33,7 @@ app.use('/api/ue',ueditor(path.join(__dirname,'public'),function(req,res,next) {
 		res.redirect('/ueditor/nodejs/config.js');
 	}
 }));
-
+const nineController = require('./server/controller/nineController');
 
 app.use(cookieParser('lifeissimpebutyoumadeitcomplicated'));
 // 设置资源后缀名和默认地址
@@ -56,44 +54,60 @@ app.get('/*', function (req, res) {
     var pathname = url.parse(req.url).pathname;
     // res.render('index')
     console.log(pathname);
-    //景点
-    if (pathname == '/getAllJd') {
-        JdController.showJdS(req, res)       //获取所有景点信息
-    } else if (pathname == '/getSomeJds') {
-        JdController.showSomeJdS(req, res)   //获取筛选的景点信息
-    } else if (pathname == '/deleteJd') {
-        JdController.deleteJd(req, res)      //删除景点
-    } else if (pathname == '/getJdById') {
-        JdController.getJdById(req, res)     //根据景点id获取信息
-    } else if (pathname == '/getJdId') {       //获取景点的id
-        JdController.getJdId(req, res)
-    } else if (pathname == '/jump2showJd') {   //跳转展示景点的页面
-        JdController.jump2showJd(req, res)
-    }
-    //攻略
-    else if (pathname == '/getSomeGl') {//查看攻略接口，，管理界面暂时用不了，不要删
-        GlController.showSomeGl(req, res)
-    } else if (pathname == '/deleteGl') {
-        GlController.deleteGl(req, res)
-    } else if (pathname == '/searchGl') {
-        GlController.searchGl(req, res)
+    if(pathname == '/getAllJd'){
+        JdController.showJdS(req,res)       //获取所有景点信息
+    }else if(pathname == '/getSomeJds'){
+        JdController.showSomeJdS(req,res)   //获取筛选的景点信息
+    }else if(pathname == '/deleteJd'){
+        JdController.deleteJd(req,res)      //删除景点
+    }else if(pathname == '/getJdById'){
+        JdController.getJdById(req,res)     //根据景点id获取信息
+    }else if(pathname == '/getJdId'){       //获取景点的id
+        JdController.getJdId(req,res)
+    }else if(pathname == '/jump2showJd'){   //跳转展示景点的页面
+        JdController.jump2showJd(req,res)
     }else if(pathname == '/getAllGl'){
         GlController.showGl(req,res)
-    }
-    //用户
-    else if (pathname == '/getAllUser') {
+    }else if(pathname == '/getSomeGl'){//查看攻略接口，，管理界面暂时用不了，不要删
+        GlController.showSomeGl(req,res)
+    }else if(pathname == '/deleteGl'){
+        GlController.deleteGl(req,res)
+    }else if(pathname == '/searchGl'){
+        GlController.searchGl(req,res)
+    }else if( pathname == '/getAllUser'){
+        userController.showUsers(req,res);
+    }else if( pathname == '/deleteUser'){
+        userController.deleteUser(req,res);
+    }else if(pathname == '/searchUser') {
+        userController.searchUser(req,res);
+    }else if (pathname == '/getAllJd') {
+        JdController.showJdS(req, res)       //获取所有景点信息
+    }else if (pathname == '/getSomeJds') {
+        JdController.showSomeJdS(req, res)   //获取筛选的景点信息
+    }else if (pathname == '/deleteJd') {
+        JdController.deleteJd(req, res)      //删除景点
+    }else if (pathname == '/getJdById') {       //根据景点id获取信息
+        JdController.getJdById(req, res)
+    }else if (pathname == '/getJdId') {       //获取景点的id
+        JdController.getJdId(req, res)
+    }else if (pathname == '/jump2showJd') {   //跳转展示景点的页面
+        JdController.jump2showJd(req, res)
+    }else if (pathname == '/getSomeGl') {//    /----攻略//查看攻略接口，，管理界面暂时用不了，不要删
+        GlController.showSomeGl(req, res)
+    }else if (pathname == '/deleteGl') {
+        GlController.deleteGl(req, res)
+    }else if (pathname == '/searchGl') {
+        GlController.searchGl(req, res)
+    }else if (pathname == '/getAllUser') {  //用户
         userController.showUsers(req, res);
-    }
-    else if (pathname == '/deleteUser') {
+    }else if (pathname == '/deleteUser') {
         userController.deleteUser(req, res);
-    }
-    else if (pathname == '/searchUser') {
-        console.log('=======>请求searchUser');
+    }else if (pathname == '/searchUser') {
         userController.searchUser(req, res)
-    }
-    //9个景点
-    else if (pathname == '/getScenic'){
-        nineController.getNineScenic(req,res)
+    }else if (pathname == '/getScenic'){
+        nineController.getNineScenic(req,res) //9个景点
+    }else if(pathname == '/checkLogin'){
+        JdController.comment_login_check(req,res)
     }
 });
 
@@ -107,6 +121,8 @@ app.post('/*', function (req, res) {
         validateCon.userLoginCheck(req, res)
     } else if (pathname == '/toregist') {
         validateCon.userRegistCheck(req, res)
+    }else if(pathname == '/up_comment'){
+        JdController.up_comment(req, res)
     }
 });
 

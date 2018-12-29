@@ -43,7 +43,6 @@ function checkName(jd_name,func){
 exports.checkNameWhenUpdate = checkNameWhenUpdate ;
 function checkNameWhenUpdate(jd_name,jd_id,func){
     var sql = 'select jd_info,jd_id,jd_name,jd_addr,imgs,param1,param2,param3 from jd where jd_name=? and jd_id!=?' ;
-
     dbutils.select(sql,[jd_name,jd_id],function(result){
         console.log(result)
         func(result)
@@ -97,6 +96,29 @@ function getJdById(jd_id,func){
         func(result) ;
     }) ; 
 }
+
+// 根据景点id拿到所有评论
+exports.getCommentById = getCommentById ; 
+function getCommentById(jd_id,func){
+    var sql = 'select user_id,jd_id,comment,comment_img,jd_value,jd_comment_time,param1,param2,param3 from jd_comment where jd_id=?' ; 
+    dbutils.select(sql,[jd_id],function(result){
+        // console.log(result);
+        func(result) ;
+    }) ; 
+}
+
+
+exports.up_comment = up_comment ;
+function up_comment(user_id,jd_id,comment,jd_value,func){
+    var sql = 'insert into jd_comment(user_id,jd_id,comment,jd_value) values (?,?,?,?)' ;
+    dbutils.select(sql,[user_id,jd_id,comment,jd_value,],function(result){
+        func(result) ;
+    }) ;
+}
+// getCommentById(576,function(){}) ;,.
+
+
+// 使用jd_id查询具体景点的评论信息，包含：用户名/评论/评论时间
 
 // 根据景点查询
 

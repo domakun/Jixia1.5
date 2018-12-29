@@ -9,7 +9,6 @@ function showJdS(req,res){
   console.log('+++++++',req.query) ;
     var pageNow = req.query.pageNow ;
     JdService.queryByCutPage(pageNow,function(result){
-        // console.log(result,">>>result") ;
         res.json(result) ;
     }) ;
 }
@@ -41,7 +40,6 @@ function showSomeJdS(req,res){
     var jd_id = req.query.jd_id ;
     var jd_name = req.query.jd_name ;
     JdService.queryByCondition(pageNow,jd_addr,jd_id,jd_name,function(result){
-        // console.log(result,">>>result") ;
         res.json(result) ;
     }) ;
 }
@@ -74,6 +72,7 @@ function getJdById(req,res){
   var jd_id = req.query.jd_id ;
   console.log('jd_id>>>',jd_id)
   JdService.getJdById(jd_id,function(result){
+      console.log(result)
     res.json(result)
   }) ;
 }
@@ -88,4 +87,29 @@ function jump2showJd (req,res) {
     var jd_id = req.query.jd_id ;
     res.cookie('jd_id',jd_id)
     res.render('showJd');
+}
+
+exports.comment_login_check = comment_login_check  ;
+function comment_login_check (req,res) {
+    var flag = 'userMessage' in req.cookies ;
+    if(flag){
+        res.json(req.cookies)
+    }else{
+        res.json('false')
+    }
+}
+
+exports.up_comment = up_comment  ;
+function up_comment (req,res) {
+    var user_id = req.body.user_id ;
+    var jd_id = req.body.jd_id ;
+    var comment = req.body.comment ;
+    var jd_value = req.body.jd_value ;
+    JdService.up_comment(user_id,jd_id,comment,jd_value,function (r) {
+        if(r.affectedRows >= 1){
+            res.json('success')
+        }else {
+            res.json('false')
+        }
+    })
 }

@@ -1,12 +1,11 @@
 const mysql = require('mysql') ;
 // 连接池对象
 const pool = mysql.createPool({
-    host: '192.168.2.102',
+    host: '192.168.2.108',
     user: 'admin',
     password: '123',
     database: 'jixia',
     port:3306 ,
-<<<<<<< HEAD
     //
     //self
 //     host: 'localhost',
@@ -14,7 +13,6 @@ const pool = mysql.createPool({
 //     password: '950918',
 //     database: 'login',
 //     port: 3306
-=======
 
     //self
     // host: 'localhost',
@@ -22,7 +20,6 @@ const pool = mysql.createPool({
     // password: '950918',
     // database: 'login',
     // port: 3306
->>>>>>> 156dde9b6d43a2a981b1b7fa9a99f318cafa6e45
 }) ;
 exports.pool = pool ;
 
