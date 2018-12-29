@@ -97,6 +97,8 @@ function updateJd(jd_id,jd_name,jd_info,jd_addr,imgs,func){
         }
     }) ;
 }
+
+
 // 根据景点id查询
 exports.getJdById = getJdById ;
 function getJdById(jd_id,func){

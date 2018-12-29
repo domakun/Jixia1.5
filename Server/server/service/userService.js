@@ -55,12 +55,27 @@ function searchUser(pageNow,user_id,user_name,func){
     }) ;
 }
 
-// searchUser(1,"%","%张%","%",function(res){
-//     console.log("======>",res)
-// })
 
-//     totalRows: 6,
-//     totalPages: 2
+exports.updateUser = updateUser ;
+function updateUser(user_id,user_name,user_pwd,user_addr,func){
+    // 先检查名字是否重复
+    userModule.checkNameWhenUpdate(user_name,user_id,function(res){
+        if(res.length != 0){
+            // 存在此名称，返回相应数据
+            func('exits');
+        }else{
+            // 不存在此名字,执行更改
+            user_id = Number(user_id) ;
+            userModule.updateJd(user_id,user_name,user_pwd,user_addr,function(result){
+                if(result.affectedRows == 0){
+                    func('error');
+                }else{
+                    func('success') ;
+                }
+            }) ;
+        }
+    }) ;
+}
 
 
 

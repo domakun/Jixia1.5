@@ -90,21 +90,20 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   },
-<<<<<<< HEAD
-	'/ueditor': {
-		target: 'http://localhost:9999',
-		changeOrigin: true,
-		pathRewrite: {
-			'^/ueditor': 'ueditor'
-		}
-	}
-=======
-  plugins: [
+
+	// '/ueditor': {
+	// 	target: 'http://localhost:9999',
+	// 	changeOrigin: true,
+	// 	pathRewrite: {
+	// 		'^/ueditor': 'ueditor'
+	// 	}
+	// },
+
+  plugins:[
     new webpack.optimize.CommonsChunkPlugin('common.js'),
     new webpack.ProvidePlugin({
       jQuery: "jquery",
       $: "jquery"
     })
   ]
->>>>>>> 156dde9b6d43a2a981b1b7fa9a99f318cafa6e45
 }

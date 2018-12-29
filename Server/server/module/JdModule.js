@@ -89,6 +89,8 @@ function updateJd (jd_id,jd_name,jd_info,jd_addr,imgs,func) {
         func(result) ;
     }) ;
 }
+
+
 // 根据景点id拿到所有信息
 exports.getJdById = getJdById ; 
 function getJdById(jd_id,func){

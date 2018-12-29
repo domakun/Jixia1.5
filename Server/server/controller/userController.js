@@ -41,7 +41,6 @@ function searchUser(req,res){
         }
     }
    // console.log('=======>req',req.query) ;
-
     var pageNow = req.query.pageNow ;
     var user_id = req.query.user_id ;
     var user_name = req.query.user_name ;
@@ -51,3 +50,15 @@ function searchUser(req,res){
     });
 }
 
+// 修改
+exports.updateUser = updateUser  ;
+function updateUser(req,res){
+    // user_id,user_name,user_pwd,user_addr
+    var user_id = req.query.user_id ;
+    var user_name = req.query.user_name ;
+    var user_pwd = req.query.user_pwd ;
+    var user_addr = req.query.user_addr ;
+    userService.updateJd(user_id,user_name,user_pwd,user_addr,function(result){
+        res.json(result) ;
+    }) ;
+}

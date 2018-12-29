@@ -1,55 +1,73 @@
 <template>
   <div class="user_aside">
-    <div class="aside_nav">
+    <el-row class="tac">
       <el-col :span="12">
-        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+				<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+					
           <el-menu-item index="1">
-            <i class="el-icon-location"></i>
-            <span slot="title">我的信息</span>
+            <img src="../../assets/img/uNav_one.png" alt="">
+            <span slot="title">我的资料</span>
+           </el-menu-item>
+					 
+          <el-menu-item index="2">
+            <img src="../../assets/img/uNav_two.png" alt="">
+            <span slot="title">我的收藏</span>
           </el-menu-item>
-
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-menu"></i>
-              <span>我的订单</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="2-1">旅游订单</el-menu-item>
-              <el-menu-item index="2-2">旅游券订单</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-setting"></i>
-              <span>常用工具</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="3-1">游客信息</el-menu-item>
-              <el-menu-item index="3-2">常用地址</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-          <el-menu-item index="4">
-            <i class="el-icon-document"></i>
-            <span slot="title">我的积分</span>
+					
+					<router-link to="">
+          <el-menu-item index="3">						
+            <img src="../../assets/img/uNav_three.png" alt="">
+            <span slot="title">我的评论</span>
           </el-menu-item>
+					</router-link>
+					
+					<router-link to="/scenic">
+					<el-menu-item index="4">
+					  <img src="../../assets/img/uNav_four.png" alt="">
+					  <span slot="title">我的足迹</span>
+					</el-menu-item>
+          </router-link>
+					
           <el-menu-item index="5">
-            <i class="el-icon-heart"></i> <!--空格 占位图标 -->
-            <span slot="title">我的关注</span>
+            <img src="../../assets/img/uNav_five.png" alt="">
+            <span slot="title">优惠券</span>
           </el-menu-item>
+					
           <el-menu-item index="6">
-            <i class="el-icon-user"></i> <!--空格 占位图标 -->
+            <img src="../../assets/img/uNav_six.png" alt="">
             <span slot="title">账户安全</span>
           </el-menu-item>
+					
+					<router-link to="/Community">
+					<el-menu-item index="7">				 
+						<img src="../../assets/img/uNav_seven.png" alt="">
+						<span slot="title">社区互动</span>
+					</el-menu-item>
+					</router-link>
+					
+					<el-submenu index="8">
+						<template slot="title">
+							<img src="../../assets/img/uNav_eight.png" alt="">
+							<span>常用工具</span>
+						</template>
+						<el-menu-item-group>
+							<el-menu-item index="1-1">发票抬头</el-menu-item>
+							<el-menu-item index="1-2">配送地址</el-menu-item>
+						</el-menu-item-group>
+					</el-submenu>
+					
         </el-menu>
       </el-col>
-    </div>
+    </el-row>
+
+
   </div>
 </template>
 
 <script>
   export default {
     name: 'userAside',
+		
     data() {
       return {};
     },
@@ -69,7 +87,7 @@
     display: inline-block;
     width: 200px;
     height: auto;
-    background-color: #eaeaea;
+    background-color: palevioletred;
     /*position: absolute;*/
     bottom: 0;
     left: 0;
@@ -94,4 +112,9 @@
     margin-top: -7px;
   }
 
+img{
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
 </style>

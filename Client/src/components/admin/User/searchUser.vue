@@ -12,13 +12,22 @@
 			</el-form-item>
 			<div>
 				<el-table :data="userData" border style="width: 100%">
-					<el-table-column :show-overflow-tooltip="true" prop="user_id" label="用户编号" width="100">
+					<el-table-column :show-overflow-tooltip="true" prop="user_id" label="用户编号" width="90">
 					</el-table-column>
-					<el-table-column :show-overflow-tooltip="true" prop="user_name" label="用户名称" width="100">
+
+					<el-table-column :show-overflow-tooltip="true" prop="user_name" label="昵称" width="90">
 					</el-table-column>
-					<el-table-column :show-overflow-tooltip="true" prop="user_addr" label="地址" width="290">
+
+          <el-table-column :show-overflow-tooltip="true" prop="email" label="邮箱" width="150">
+          </el-table-column>
+
+          <el-table-column :show-overflow-tooltip="true" prop="user_pwd" label="密码" width="90">
+          </el-table-column>
+
+					<el-table-column :show-overflow-tooltip="true" prop="user_addr" label="地址" width="240">
 					</el-table-column>
-					<el-table-column :show-overflow-tooltip="true" fixed="right" label="操作" width="150">
+
+					<el-table-column :show-overflow-tooltip="true" fixed="right" label="操作" width="100">
 						<template slot-scope="scope">
 							<el-button @click="deleteUser(scope.row.user_id)" type="text" size="small">删除</el-button>
 						</template>
@@ -83,7 +92,7 @@
 						this.userObj[item] = '';
 					}
 				}
-				
+
 				var url =
 					`${this.url}/searchUser?pageNow=${this.pageNow}&user_id=${this.userObj.user_id}&user_name=${this.userObj.user_name}`;
 				this.$axios.get(url, {}).then(response => {
@@ -95,7 +104,7 @@
 					console.log("get发送Ajax请求失败", response)
 				})
 			},
-			onSubmit: function() {			
+			onSubmit: function() {
 				this.pageNow = 1;
 				this.refresh()
 			}

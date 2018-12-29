@@ -11,13 +11,13 @@ import User from '@/components/admin/User/User'
 import Scenic from '@/components/scenic/Scenic'
 import Me from '@/components/me/Me'
 import Strategy from '@/components/strategy/Strategy'
-<<<<<<< HEAD
+
 import StrategyDetails from '@/components/strategy/StrategyDetails'
 
-=======
+
 import About from '@/components/home/About'
 import Community from '@/components/home/Community'
->>>>>>> 156dde9b6d43a2a981b1b7fa9a99f318cafa6e45
+
 Vue.use(Router);
 
 export default new Router({
@@ -82,13 +82,13 @@ export default new Router({
       name:'Me',
       component: Me
     },
-<<<<<<< HEAD
+
 		{
 			path: '/StrategyDetails',
 			name: 'StrategyDetails',
 			component: StrategyDetails
-		}
-=======
+		},
+
     {
       //关于我们--路由
       path:'/About',
@@ -101,6 +101,7 @@ export default new Router({
       name:'Community',
       component: Community
     },
->>>>>>> 156dde9b6d43a2a981b1b7fa9a99f318cafa6e45
+		
+
   ]
 })

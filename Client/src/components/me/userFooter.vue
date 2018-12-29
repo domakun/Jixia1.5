@@ -1,9 +1,9 @@
 <template>
   <div class="user_footer">
-    <h3 class="enjoy">
+    <h3 class="enjoy" style="color: #FF6F61;">
       <router-link to="/scenic">您可能感兴趣的景点</router-link>
     </h3>
-    <div @click="getNineScenic">换一批看看</div>
+    <div @click="getNineScenic" style="cursor: pointer">换一批看看</div>
     <div class=" footer_img" v-for="item in scenicImgArr">
       <!--跳转对应景点介绍-->
       <router-link to="/"><img :src="item.imgs" :alt="item.jd_name"></router-link>
@@ -56,6 +56,9 @@
     text-align: center;
     font-size: 20px;
     margin: 0 auto;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
   }
 
   .footer_img {
@@ -63,19 +66,19 @@
     height: 260px;
     margin: 10px 30px;
     background-color: #fff;
-    box-shadow: 5px 5px 5px #888888;
+    box-shadow: 5px 5px 5px #eee;
     display: inline-block;
     overflow: hidden;
   }
 
   .footer_img:hover {
-    box-shadow: 10px 10px 10px #888888;
+    box-shadow: 10px 10px 10px #eee;
   }
 
   .footer_img:hover img {
     width: 250px;
     height: 220px;
-    box-shadow: 3px 3px 3px #888888;
+    box-shadow: 3px 3px 3px #ccc;
   }
 
   /* 头部开始 */
