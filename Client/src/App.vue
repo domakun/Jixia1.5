@@ -7,7 +7,6 @@
 <script>
   import Home from './components/Home'
 
-
   export default {
     name: "App",
     components: {
@@ -75,9 +74,7 @@
     /*height: 1000px;*/
     margin: 0 auto;
     padding-top: 71px;
-
 		position: relative;
-
     position: relative;
   }
 

@@ -1,11 +1,12 @@
 const mysql = require('mysql') ;
 // 连接池对象
 const pool = mysql.createPool({
-    host: '192.168.2.108',
+    host: '192.168.2.102',
     user: 'admin',
     password: '123',
     database: 'jixia',
-    port:3306 ,
+    port: 3306,
+})
     //
     //self
 //     host: 'localhost',
@@ -19,10 +20,8 @@ const pool = mysql.createPool({
     // user: 'root',
     // password: '950918',
     // database: 'login',
-    // port: 3306
-
-}) ;
-exports.pool = pool ;
+    // port: 3306}) ;
+exports.pool = pool;
 
 
 // 封装查询select方法
