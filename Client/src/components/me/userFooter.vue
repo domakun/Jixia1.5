@@ -73,12 +73,14 @@
 
   .footer_img:hover {
     box-shadow: 10px 10px 10px #eee;
+    transition: all 1s;
   }
 
   .footer_img:hover img {
     width: 250px;
     height: 220px;
     box-shadow: 3px 3px 3px #ccc;
+    transition: all 1s;
   }
 
   /* 头部开始 */

@@ -41,7 +41,7 @@ module.exports = {
   },
   module: {
     rules: [
-      (config.dev.useEslint ? [createLintingRule()] : []),
+      ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -90,13 +90,6 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   },
-	'/ueditor': {
-		target: 'http://localhost:9999',
-		changeOrigin: true,
-		pathRewrite: {
-			'^/ueditor': 'ueditor'
-		}
-	},
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common.js'),
     new webpack.ProvidePlugin({

@@ -101,7 +101,18 @@ function updateJd(jd_id,jd_name,jd_info,jd_addr,imgs,func){
 exports.getJdById = getJdById ;
 function getJdById(jd_id,func){
     JdModule.getJdById(jd_id,function(r){
+        JdModule.getCommentById(jd_id,function(res){
+            r[0].jd_comment = res ;
             func(r) ;
+        })
+    }) ;
+}
+
+
+exports.up_comment = up_comment ;
+function up_comment(user_id,jd_id,comment,jd_value,func){
+    JdModule.up_comment(user_id,jd_id,comment,jd_value,function(r){
+        func(r)
     }) ;
 }
 // getJdById(5,function(){})
