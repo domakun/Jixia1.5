@@ -46,10 +46,8 @@ function insert(jd_name,jd_info,jd_addr,imgs,func){
 // 查询筛选页面数据和总页数
 exports.queryByCondition = queryByCondition ;
 function queryByCondition(pageNow,jd_addr,jd_id,jd_name,func){
-    console.log(pageNow,'pageNow');
     var first = (pageNow-1)*publicdata.max ;
     var result = {} ;
-    console.log(first);
     JdModule.selectSomeJds(first,publicdata.max,jd_addr,jd_id,jd_name,function(r){
         // 回调查询总页数
         result.jdData = r ;
@@ -99,9 +97,11 @@ function updateJd(jd_id,jd_name,jd_info,jd_addr,imgs,func){
 }
 // 根据景点id查询
 exports.getJdById = getJdById ;
-function getJdById(jd_id,func){
+function getJdById(pageNow,jd_id,func){
+    var first = (pageNow-1)*publicdata.commentSize ;
+    var result = {} ;
     JdModule.getJdById(jd_id,function(r){
-        JdModule.getCommentById(jd_id,function(res){
+        JdModule.getCommentById(first,publicdata.commentSize,jd_id,function(res){
             r[0].jd_comment = res ;
             func(r) ;
         })
@@ -115,7 +115,10 @@ function up_comment(user_id,jd_id,comment,jd_value,func){
         func(r)
     }) ;
 }
-// getJdById(5,function(){})
+
+// getJdById(1,640,function(res){
+//     console.log(res)
+// })
 // updateJd('1','jd_neeame','jd_info','jd_addr','imgseeeee',function(){})
 // deleteJd(11,function(){})
 // queryByCondition(1,'%','%','%s%',function(){})

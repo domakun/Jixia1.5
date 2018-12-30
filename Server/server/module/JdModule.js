@@ -101,10 +101,9 @@ function getJdById(jd_id,func){
 
 // 根据景点id拿到所有评论
 exports.getCommentById = getCommentById ; 
-function getCommentById(jd_id,func){
-    var sql = 'select user_id,jd_id,comment,comment_img,jd_value,jd_comment_time,param1,param2,param3 from jd_comment where jd_id=?' ; 
-    dbutils.select(sql,[jd_id],function(result){
-        // console.log(result);
+function getCommentById(first,max,jd_id,func){
+    var sql = 'select jd_commnet_id,user_id,jd_id,comment,comment_img,jd_value,jd_comment_time,param1,param2,param3 from jd_comment where jd_id=? order by jd_commnet_id desc limit ?,?' ;
+    dbutils.select(sql,[jd_id,first,max],function(result){
         func(result) ;
     }) ; 
 }
@@ -117,7 +116,9 @@ function up_comment(user_id,jd_id,comment,jd_value,func){
         func(result) ;
     }) ;
 }
-// getCommentById(576,function(){}) ;,.
+// getCommentById(0,1,576,function(res){
+//     console.log(res)
+// }) ;
 
 
 // 使用jd_id查询具体景点的评论信息，包含：用户名/评论/评论时间

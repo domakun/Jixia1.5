@@ -70,8 +70,9 @@ function updateJd(req,res){
 exports.getJdById = getJdById  ;
 function getJdById(req,res){
   var jd_id = req.query.jd_id ;
-  console.log('jd_id>>>',jd_id)
-  JdService.getJdById(jd_id,function(result){
+  var comment_pageNow = req.query.comment_pageNow ;
+  console.log('>>>>params',jd_id,comment_pageNow)
+  JdService.getJdById(comment_pageNow,jd_id,function(result){
       console.log(result)
     res.json(result)
   }) ;
